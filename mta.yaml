@@ -21,6 +21,22 @@ build-parameters:
         - bash -c "export PATH=$PATH:$(pwd)/node_modules/.bin"
         - cds build --production
 modules:
+  - name: RiskManagement-RisksMobile
+    type: html5
+    path: app/RisksMobile
+    build-parameters:
+      builder: custom
+      commands:
+        - npx mdk build --target module --ui5 --forceUpdate
+        - bash -c "cd Web/MDKModule && rm -rf .npmrc && npm install"
+        - bash -c "cd Web/MDKModule && npm run build"
+        - >-
+          bash -c "mv Web/MDKModule/MDKModule-content.zip
+          ../../build/dist/RisksMobile.zip"
+        - rm -rf Web/MDKModule/dist
+      _artifactName: RisksMobile.zip
+      supported-platforms: []
+      build-result: ../../build/dist
   - name: RiskManagement-srv
     type: nodejs
     path: gen/srv
