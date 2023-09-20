@@ -57,7 +57,7 @@
     "features": {
       "fetch_csrf": true
     },
-    "profile": "with-mtx-sidecar"
+    "profile": "development"
   },
   "lcap": true,
   "sapux": [
